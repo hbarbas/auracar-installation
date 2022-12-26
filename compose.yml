@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontend
+    restart: always
+    ports: 
+        - 8081:80
+  backend:
+    build: ./backend
+    restart: always
+    environment:
+        - SPRING.R2DBC.URL=r2dbc:postgresql://postgres:5432/auracar?timezone=UTC
+        - SPRING.R2DBC.USERNAME=auracar
+        - SPRING.R2DBC.PASSWORD=auracar
+    ports: 
+        - 8555:8555
+    depends_on:
+        - postgres
+  postgres:
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=auracar
+      - POSTGRES_PASSWORD=auracar
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/create_tables.sql
+volumes:
+  db:
+    driver: local
