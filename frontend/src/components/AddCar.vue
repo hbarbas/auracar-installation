@@ -76,7 +76,7 @@ export default class AddCar extends Vue {
         exitTime : "",
         countdown : "",
         active : true,
-        adviser: "",
+        adviser : "",
     };
     private submitted : boolean = false;
 
