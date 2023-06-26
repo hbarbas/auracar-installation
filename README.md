@@ -1,4 +1,4 @@
 # AURACAR-Intallation
 
-## Instalación
-Manual de instalación Instructions.docx
+## Installation
+Installation Manual Instructions.docx
